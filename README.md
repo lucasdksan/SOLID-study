@@ -139,4 +139,117 @@ No exemplo acima, usamos funções para representar as classes e os métodos. A 
 
 ## I (Interface Segregation Principle ou ISP / Princípio da segregação de Interface)
 
+Este princípio diz que o uso de interfaces deve ser feito de forma específica, e que ter várias interfaces bem específicas é melhor do que ter uma grande que redireciona para todos. O princípio se baseia em “nenhum cliente deve ser forçado a depender de métodos que não utiliza”.
+
+Isto faz com que a manutenção do sistema seja muito mais desacoplada e assim, torna-se fácil implementar novos códigos, desde que neste padrão. No paradigma funcional, criando o mínimo de campos obrigatórios para que o sistema opere em uma struct única que irá ser passada em uma função de entrada, consegue-se alcançar resultados análogos ao que acontece em POO.
+
+ Em outras palavras, uma classe não deve ser forçada a depender de interfaces que não utiliza. Aqui está um exemplo em JavaScript usando programação funcional:
+
+```markdown
+  // Exemplo de aplicação do Princípio da Segregação de Interfaces com programação funcional
+
+  // Interface para um animal que emite som
+  const Soundable = (makeSoundFn) => {
+    return {
+      makeSound: makeSoundFn
+    };
+  };
+
+  // Implementação da interface Soundable para gatos
+  const Cat = (name) => {
+    return {
+      name,
+      makeSound: () => {
+        console.log('Meow!'); // Som de gato
+      }
+    };
+  };
+
+  // Implementação da interface Soundable para cachorros
+  const Dog = (name) => {
+    return {
+      name,
+      makeSound: () => {
+        console.log('Woof!'); // Som de cachorro
+      }
+    };
+  };
+
+  // Implementação da interface Soundable para aves
+  const Bird = (name) => {
+    return {
+      name,
+      makeSound: () => {
+        console.log('Tweet!'); // Som de ave
+      }
+    };
+  };
+
+  // Cliente que utiliza a interface Soundable
+  const playSound = (animal) => {
+    animal.makeSound();
+  };
+
+  // No exemplo acima, usamos funções para representar as classes e os métodos, e a função Soundable representa a interface que define o comportamento de emitir som. As funções Cat, Dog e Bird são as implementações específicas de animais que implementam a interface Soundable. O cliente `playSound` utiliza a interface Soundable, permitindo que qualquer objeto que implemente essa interface possa ser passado como argumento, sem se importar com a implementação específica do animal.
+
+  const cat1 = Cat('Gato Fofo');
+  const dog1 = Dog('Cachorro Amigável');
+  const bird1 = Bird('Pássaro Colorido');
+
+  playSound(cat1); // Output: Meow!
+  playSound(dog1); // Output: Woof!
+  playSound(bird1); // Output: Tweet!
+```
+
 ## D (Dependency Inversion Principle / Princípio de Segregação de Interface)
+
+Este princípio diz que o seu sistema precisa ter alta coesão e baixo acoplamento. Basicamente é você fazer com que módulos e funções relacionadas se comuniquem com funções não relacionadas o mínimo possível, o que independente do paradigma é uma boa prática.
+
+Resumindo, essa dependência propõe que as classes de alto nível não devem depender de classes de baixo nível diretamente, mas sim de interfaces abstratas. Além disso, esse princípio também preconiza que as abstrações não devem depender de detalhes concretos, ou seja, os detalhes de implementação devem depender das abstrações. Isso promove um desacoplamento entre as classes, permitindo maior flexibilidade, extensibilidade e reutilização do código. 
+
+```markdown
+
+  // Exemplo de aplicação do Princípio da Inversão de Dependência com programação funcional
+
+  // Interface abstrata para um reprodutor de mídia
+  const MediaPlayer = (playFn) => {
+    return {
+      play: playFn
+    };
+  };
+
+  // Implementação concreta de um reprodutor de mídia de áudio
+  const AudioPlayer = () => {
+    return {
+      play: () => {
+        console.log('Reproduzindo áudio...'); // Lógica de reprodução de áudio
+      }
+    };
+  };
+
+  // Implementação concreta de um reprodutor de mídia de vídeo
+  const VideoPlayer = () => {
+    return {
+      play: () => {
+        console.log('Reproduzindo vídeo...'); // Lógica de reprodução de vídeo
+      }
+    };
+  };
+
+  // Classe de alto nível que depende da interface abstrata MediaPlayer
+  const App = (mediaPlayer) => {
+    return {
+      playMedia: () => {
+        mediaPlayer.play();
+      }
+    };
+  };
+
+  // Cliente que utiliza a classe de alto nível App
+  const app = App(AudioPlayer()); // Instância do reprodutor de mídia de áudio
+  app.playMedia(); // Output: Reproduzindo áudio...
+
+  const app2 = App(VideoPlayer()); // Instância do reprodutor de mídia de vídeo
+  app2.playMedia(); // Output: Reproduzindo vídeo...
+
+```
