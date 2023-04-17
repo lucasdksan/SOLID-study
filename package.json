@@ -2,9 +2,9 @@
   "name": "SOLID-study",
   "version": "1.0.0",
   "description": "Estudos sobre SOLID aplicado em JavaScript.",
-  "main": "index.js",
+  "main": "src/server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsnd --transpile-only --ignore-watch node_nodules --respawn src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -18,10 +18,23 @@
   },
   "homepage": "https://github.com/lucasdksan/SOLID-study#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "@prisma/client": "^4.12.0",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.7",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/sqlite3": "^3.1.8",
+    "prisma": "^4.12.0",
+    "prisma-erd-generator": "^1.5.4",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
