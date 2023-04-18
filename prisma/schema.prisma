@@ -15,17 +15,33 @@ model Teacher {
   name     String
   date     DateTime
   subjects String   @unique
+
+  @@map("teachers")
 }
 
 model Student {
-  id   String   @id @default(uuid())
-  name String
-  date DateTime
+  id             String           @id @default(uuid())
+  name           String
+  date           DateTime
+  SubjectStudent SubjectStudent[]
+
+  @@map("students")
 }
 
 model Subject {
-  id         String   @id @default(uuid())
-  name       String
-  createDate DateTime
-  teacher    String
+  id             String           @id @default(uuid())
+  name           String
+  created_at     DateTime         @default(now())
+  teacher        String
+  SubjectStudent SubjectStudent[]
+
+  @@map("subjects")
+}
+
+model SubjectStudent {
+  id         String  @id @default(uuid())
+  id_student String
+  id_subject String
+  student    Student @relation(fields: [id_student], references: [id])
+  subject    Subject @relation(fields: [id_subject], references: [id])
 }
