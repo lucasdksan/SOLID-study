@@ -253,3 +253,7 @@ Resumindo, essa dependência propõe que as classes de alto nível não devem de
   app2.playMedia(); // Output: Reproduzindo vídeo...
 
 ```
+
+# Sobre o projeto:
+
+Esse projeto foca em reproduzir um sistema de cadastro de alunos, aulas e professores usando o aprendizado de S.O.L.I.D..

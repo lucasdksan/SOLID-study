@@ -31,6 +31,7 @@ model Student {
 model Subject {
   id             String           @id @default(uuid())
   name           String
+  id_teacher     String
   created_at     DateTime         @default(now())
   teacher        String
   SubjectStudent SubjectStudent[]
@@ -44,4 +45,6 @@ model SubjectStudent {
   id_subject String
   student    Student @relation(fields: [id_student], references: [id])
   subject    Subject @relation(fields: [id_subject], references: [id])
+
+  @@map("subjects_students")
 }
