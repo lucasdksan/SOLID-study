@@ -1,15 +1,10 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import { TeacherCreateController } from "./controller/TeacherCreateController";
+import { TeacherSearchController } from "./controller/TeacherSearchController";
 
 const router = express.Router();
 
-class Test {
-    show(req: Request, res: Response){
-        return res.json({oi: "Olá"});
-    }
-}
-
-const testController = new Test();
-
-router.get("/", testController.show)
+router.get("/search-teacher", TeacherSearchController)
+router.post("/create-teacher", TeacherCreateController);
 
 export default router;

@@ -14,7 +14,7 @@ model Teacher {
   id       String   @id @default(uuid())
   name     String
   date     DateTime
-  subjects String   @unique
+  subjects String
 
   @@map("teachers")
 }
