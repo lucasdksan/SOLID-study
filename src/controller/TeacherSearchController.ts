@@ -1,14 +1,21 @@
 import { Request, Response } from "express";
 import { TeacherModel } from "../model/TeacherModel";
+import { TeacherView } from "../view/TeacherView";
+import { validationRequestValues } from "../libs/validationRequestValues";
 
 const TeacherSearchController = async (req: Request, res: Response)=>{
-    const { id, name, subjects } = req.query;
-    const idTeacher = id as string;
-    const nameTeacher = name as string;
-    const subjectsTeacher = subjects as string;
-    const resultSearch = await TeacherModel().searchTeacher({ id:idTeacher, name:nameTeacher, subjects:subjectsTeacher });
+    const { id, name } = req.query;
+    const idTeacher = validationRequestValues(true, id);
+    const nameTeacher = validationRequestValues(false, name);
 
-    console.log(resultSearch);
+    try {
+        const resultTeacher = await TeacherModel().searchTeacher({ id: idTeacher, name: nameTeacher });
+        const resultView = TeacherView().singleTeacher({ id: resultTeacher.teacherResult?.id, name: resultTeacher.teacherResult?.name, subjects: resultTeacher.teacherResult?.subjects, date: resultTeacher.teacherResult?.date });
+
+        return res.json(resultView);
+    } catch(error){
+        return res.status(401).json({ error: "Error Search Teacher!" });
+    }
 }
 
 export { TeacherSearchController };

@@ -190,8 +190,6 @@ Isto faz com que a manutenção do sistema seja muito mais desacoplada e assim, 
     animal.makeSound();
   };
 
-  // No exemplo acima, usamos funções para representar as classes e os métodos, e a função Soundable representa a interface que define o comportamento de emitir som. As funções Cat, Dog e Bird são as implementações específicas de animais que implementam a interface Soundable. O cliente `playSound` utiliza a interface Soundable, permitindo que qualquer objeto que implemente essa interface possa ser passado como argumento, sem se importar com a implementação específica do animal.
-
   const cat1 = Cat('Gato Fofo');
   const dog1 = Dog('Cachorro Amigável');
   const bird1 = Bird('Pássaro Colorido');
@@ -200,6 +198,8 @@ Isto faz com que a manutenção do sistema seja muito mais desacoplada e assim, 
   playSound(dog1); // Output: Woof!
   playSound(bird1); // Output: Tweet!
 ```
+
+No exemplo acima, usamos funções para representar as classes e os métodos, e a função Soundable representa a interface que define o comportamento de emitir som. As funções Cat, Dog e Bird são as implementações específicas de animais que implementam a interface Soundable. O cliente `playSound` utiliza a interface Soundable, permitindo que qualquer objeto que implemente essa interface possa ser passado como argumento, sem se importar com a implementação específica do animal.
 
 ## D (Dependency Inversion Principle / Princípio de Segregação de Interface)
 
@@ -257,3 +257,4 @@ Resumindo, essa dependência propõe que as classes de alto nível não devem de
 # Sobre o projeto:
 
 Esse projeto foca em reproduzir um sistema de cadastro de alunos, aulas e professores usando o aprendizado de S.O.L.I.D..
+O desafio de colocar os estudos do SOLID em prática é tentar utilizá-lo na arquitetura MVC. A utilização do MVC se dá pela facilidade de implementação e organização.

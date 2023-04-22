@@ -1,18 +1,17 @@
 import { prismaClient } from "../../../database/prismaClient";
 import { createDate } from "../../../libs/createDate";
 import { lowerCaseStrings } from "../../../libs/lowerCaseStrings";
-import { TeacherModelTypes } from "../../../types/TeacherModelTypes";
+import { StudentModelTypes } from "../../../types/StudentModelTypes";
 
-async function createTeacher({ date, name, subjects }:TeacherModelTypes){
+const createStudent = async ({ date, name }:StudentModelTypes)=>{
     const newDate = createDate(date as string);
-    
-    await prismaClient.teacher.create({
+
+    await prismaClient.student.create({
         data: {
-            subjects: subjects as string,
             date: newDate,
             name: lowerCaseStrings(name as string)
         }
     });
 }
 
-export { createTeacher };
+export { createStudent };

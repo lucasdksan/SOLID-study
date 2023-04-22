@@ -1,15 +1,12 @@
 import { prismaClient } from "../../../database/prismaClient";
 import { TeacherModelTypes } from "../../../types/TeacherModelTypes";
-import { searchTeacherForSubject } from "./searchTeacherForSubject";
 
-async function searchTeacher({ id, name, subjects }: TeacherModelTypes){
+async function searchTeacher({ id, name }: TeacherModelTypes){
     const teacherResult = await prismaClient.teacher.findFirst({
-        where: { id: id, OR: { name: { contains: name } } }
+        where: { OR: { name: { contains: name }, id: id } }
     });
 
-    const manyTeacher = await searchTeacherForSubject({ subjects });
-
-    return { teacherResult, manyTeacher };
+    return { teacherResult };
 }
 
 export { searchTeacher };
