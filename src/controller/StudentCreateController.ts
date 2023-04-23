@@ -4,10 +4,10 @@ import { lowerCaseStrings } from "../libs/lowerCaseStrings";
 
 const StudentCreateController = async (req: Request, res: Response)=>{
     const { name, date } = req.body;
-    const studentModell = StudentModel();
+    const studentModel = StudentModel();
 
     try {
-        await studentModell.createStudent({ date, name: lowerCaseStrings(name) });
+        await studentModel.createStudent({ date, name: lowerCaseStrings(name) });
 
         return res.status(201).json({ message: "Successfully Created Student!" });
     } catch(error) {

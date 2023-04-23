@@ -1,7 +1,17 @@
-export type SubjectModelTypes = {
-    id?: string;
+interface SubjectModelCreateTypes {
     name?: string;
     id_teacher?: string;
     teacher?: string;
-    subjectstudent?: string[];
 }
+
+interface SubjectModelSearchTypes {
+    id?: string;
+    id_teacher?: string;
+    name?: string;
+    teacher?: string;
+}
+
+export {
+    SubjectModelCreateTypes,
+    SubjectModelSearchTypes
+};

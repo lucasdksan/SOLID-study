@@ -1,7 +1,7 @@
 import { prismaClient } from "../../../database/prismaClient";
-import { TeacherModelTypes } from "../../../types/TeacherModelTypes";
+import { TeacherModelSearchTypes } from "../../../types/TeacherModelTypes";
 
-async function searchTeacher({ id, name }: TeacherModelTypes){
+async function searchTeacher({ id, name }: TeacherModelSearchTypes){
     const teacherResult = await prismaClient.teacher.findFirst({
         where: { OR: { name: { contains: name }, id: id } }
     });

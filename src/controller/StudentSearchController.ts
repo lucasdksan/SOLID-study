@@ -12,8 +12,8 @@ const StudentSearchController = async (req: Request, res: Response)=> {
     
     try {
         const resultStudent = await studentModel.searchStudent({ name: nameStudent, id: idStudent });
-        console.log(["resultStudent", resultStudent]);
         const resultStudentView = studentView.singleStudent({ date: resultStudent.studentResult?.date, id: resultStudent.studentResult?.id, name: resultStudent.studentResult?.name });
+        
         return res.status(200).json(resultStudentView);
     } catch(error) {
         return res.json({ error: "Error Search Student!" });

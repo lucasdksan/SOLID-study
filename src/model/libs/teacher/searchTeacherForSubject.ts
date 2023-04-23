@@ -1,7 +1,7 @@
 import { prismaClient } from "../../../database/prismaClient";
-import { TeacherModelTypes } from "../../../types/TeacherModelTypes";
+import { TeacherModelSearchForSubjectTypes } from "../../../types/TeacherModelTypes";
 
-async function searchTeacherForSubject({ subjects }: TeacherModelTypes){
+async function searchTeacherForSubject({ subjects }: TeacherModelSearchForSubjectTypes){
     const searchTeacherForSubjectResult = await prismaClient.teacher.findMany({
         where: {
             subjects: subjects

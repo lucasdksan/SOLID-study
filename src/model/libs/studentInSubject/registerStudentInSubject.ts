@@ -1,7 +1,7 @@
 import { prismaClient } from "../../../database/prismaClient";
-import { StudentSubjectTypes } from "../../../types/StudentSubjectTypes";
+import { StudentInSubjectRegisterTypes } from "../../../types/StudentInSubjectModelTypes";
 
-const registerStudentInSubject = async ({ id_student, id_subject }:StudentSubjectTypes)=>{
+const registerStudentInSubject = async ({ id_student, id_subject }: StudentInSubjectRegisterTypes)=>{
     await prismaClient.subjectStudent.create({
         data: {
             id_student: id_student as string,

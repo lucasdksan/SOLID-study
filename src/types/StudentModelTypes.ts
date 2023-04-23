@@ -1,6 +1,16 @@
-export type StudentModelTypes = {
-    name?: string;
+interface StudentModelCreateTypes {
     date?: string;
-    id?: string;
+    name: string | undefined;
     subjects?: string[];
 }
+
+interface StudentModelSearchTypes  {
+    id: string | undefined;
+    name: string | undefined;
+    subjects?: string[];
+}
+
+export {
+    StudentModelSearchTypes,
+    StudentModelCreateTypes
+};

@@ -1,7 +1,7 @@
 import { prismaClient } from "../../../database/prismaClient";
-import { SubjectModelTypes } from "../../../types/SubjectModelTypes";
+import { SubjectModelSearchTypes } from "../../../types/SubjectModelTypes";
 
-const searchSubject = async ({ id, id_teacher, name, teacher }:SubjectModelTypes)=>{
+const searchSubject = async ({ id, id_teacher, name, teacher }: SubjectModelSearchTypes)=>{
     const resultSubject = await prismaClient.subject.findMany({
         where: {
             OR: {

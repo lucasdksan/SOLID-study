@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { StudentModel } from "../model/StudentModel";
+import { StudentInSubjectModel } from "../model/StudentInSubjectModel";
 import { validationRequestValues } from "../libs/validationRequestValues";
 
-const StudentRegisterInSubjectController = async (req: Request, res: Response)=> {
+const RegisterStudentInSubjectController = async (req: Request, res: Response)=> {
     const { idStudent, idSubject } = req.body;
     const idStudentRegister = validationRequestValues(true, idStudent);
     const idSubjectRegister = validationRequestValues(true, idSubject);
-    const studentModel = StudentModel();
+    const studentInSubjectModel = StudentInSubjectModel();
 
     try {
-        await studentModel.registerStudentInSubject({ id_student: idStudentRegister, id_subject: idSubjectRegister });
+        await studentInSubjectModel.registerStudentInSubject({ id_student: idStudentRegister, id_subject: idSubjectRegister });
 
         return res.status(201).json({ message: "Successfully Register Student in Subject!" });
     } catch(error){
@@ -17,4 +17,4 @@ const StudentRegisterInSubjectController = async (req: Request, res: Response)=>
     }
 }
 
-export { StudentRegisterInSubjectController };
+export { RegisterStudentInSubjectController };
