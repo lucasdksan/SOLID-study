@@ -7,11 +7,14 @@ const StudentSearchController = async (req: Request, res: Response)=> {
     const { id, name } = req.query;
     const idStudent = validationRequestValues(true, id);
     const nameStudent = validationRequestValues(true, name);
+    const studentModel = StudentModel();
+    const studentView = StudentView();
     
     try {
-        const resultStudent = await StudentModel().searchStudent({ name: nameStudent, id: idStudent });
-        const resultStudentView = StudentView().singleStudent({ date: resultStudent.studentResult?.date, id: resultStudent.studentResult?.id, name: resultStudent.studentResult?.name });
-        return res.json(resultStudentView);
+        const resultStudent = await studentModel.searchStudent({ name: nameStudent, id: idStudent });
+        console.log(["resultStudent", resultStudent]);
+        const resultStudentView = studentView.singleStudent({ date: resultStudent.studentResult?.date, id: resultStudent.studentResult?.id, name: resultStudent.studentResult?.name });
+        return res.status(200).json(resultStudentView);
     } catch(error) {
         return res.json({ error: "Error Search Student!" });
     }
