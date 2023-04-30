@@ -1,4 +1,4 @@
-export type TeacherViewTypes = {
+export interface TeacherViewTypes {
     name?: string;
     id?: string;
     date?: Date;

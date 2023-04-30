@@ -11,6 +11,7 @@ const StudentCreateController = async (req: Request, res: Response)=>{
 
         return res.status(201).json({ message: "Successfully Created Student!" });
     } catch(error) {
+        console.log(error);
         return res.status(401).json({ error: "Error creating student!" });
     }
 }

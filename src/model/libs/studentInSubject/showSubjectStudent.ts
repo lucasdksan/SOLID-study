@@ -16,8 +16,6 @@ const showSubjectStudent = async ({id_student }:SubjectStudentShowTypes)=>{
             }
         });
 
-        console.log(subject)
-
         arrSubjects.push(subject);
     }
 
